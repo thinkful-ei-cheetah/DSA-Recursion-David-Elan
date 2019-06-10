@@ -64,3 +64,76 @@ const splitStr = function(str, separator) {
 }
 
 splitStr('02/20/2020') // => 02202020
+
+//6. Fibonacci Sequence 
+
+const fibSeq = function(num) {
+  if (num <= 2) {
+    return 1
+  }
+  return fibSeq(num - 1) + fibSeq(num - 2)
+}
+
+fibSeq(5) // => 5
+
+//7. Factorial 
+const factorialNum = function(num) {
+  if (num === 1) {
+    return 1
+  }
+  return num * factorialNum(num - 1)
+}
+
+factorialNum(5) // => 5 * 4 * 3 * 2 * 1 = 120
+
+//8. Find a way out of the maze (Added last line in last if for number 9)
+let mySmallMaze = [
+  [' ', ' ', ' '],
+  [' ', '*', ' '],
+  [' ', ' ', 'e']
+];
+
+let maze = [
+  [' ', ' ', ' ', '*', ' ', ' ', ' '],
+  ['*', '*', ' ', '*', ' ', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+  [' ', '*', '*', '*', '*', '*', ' '],
+  [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+];
+
+const findWayOut = function(maze, position=0, row=0, column=0, path=[], direction='S') {
+  if(row >= maze.length || column >= maze[0].length) {
+    return;
+  }
+  if(row < 0 || column < 0) {
+    return;
+  }
+  path[position] = direction
+  position++
+  if(maze[row][column] === 'e') {
+    console.log('We found the path.', path)
+    return;
+  }
+  if(maze[row][column] === ' ') {
+    maze[row][column] = 'V'
+    findWayOut(maze, position, row, column - 1, path, 'L')
+    findWayOut(maze, position, row, column + 1, path, 'R')
+    findWayOut(maze, position, row - 1, column, path, 'U')
+    findWayOut(maze, position, row + 1, column, path, 'D')
+    maze[row][column] = ' '
+  }
+  position--
+}
+
+findWayOut(maze)
+
+//10. Anagrams
+const anagramFinder = function(word) {
+  if (!word.length) {
+    return ''
+  }
+  const prefix = word[0]
+  return prefix + anagramFinder(word.slice(1, word.length))
+}
+
+anagramFinder(axe) // => axe aex xae xea eax exa
