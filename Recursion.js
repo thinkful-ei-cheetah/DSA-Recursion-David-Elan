@@ -29,7 +29,7 @@ const powerCalculator = function(base, exp){
   }
 };
 
-//3.
+//3. Reverse a string
 
 const stringRev = function(str){
   if(str.length === ''){
@@ -37,3 +37,30 @@ const stringRev = function(str){
   }
   return stringRev(str.substr(1)) + str.charAt(0);
 };
+
+//4. nth Triangular Number
+const nthTriangularNum = function(n) {
+  if(n === 1) {
+    return 1
+  }
+  return n + nthTrianglularNum(n - 1)
+}
+
+nthTriangularNum(6) // => 21
+
+//5. String Splitter
+
+const splitStr = function(str, separator) {
+  if (str === "") {
+    return ""
+  }
+  const newChar = str[0]
+  if (newChar === separator) {
+    return splitStr(str.slice(1), separator)
+  }
+  else {
+    return newChar + splitStr(str.slice(1), separator)
+  }
+}
+
+splitStr('02/20/2020') // => 02202020
