@@ -28,3 +28,12 @@ const powerCalculator = function(base, exp){
     return base * powerCalculator(base, exp-1);
   }
 };
+
+//3.
+
+const stringRev = function(str){
+  if(str.length === ''){
+    return '';
+  }
+  return stringRev(str.substr(1)) + str.charAt(0);
+};
